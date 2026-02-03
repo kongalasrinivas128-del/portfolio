@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}About {{ owner_name }} - My Portfolio{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1>About {{ owner_name }}</h1>
+        <p class="breadcrumb">Home > About</p>
+    </div>
+</div>
+
+<section class="about-section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Who Am I?</h2>
+                <p>Hello! I'm <strong>{{ owner_name }}</strong>, {{ summary }}</p>
+                
+                <h3>Education</h3>
+                <ul>
+                    {% for edu in education %}
+                    <li><strong>{{ edu.degree }}</strong><br>
+                    {{ edu.institution }}<br>
+                    Aggregate: {{ edu.aggregate }}<br>
+                    Year: {{ edu.year }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Certifications</h3>
+                <ul>
+                    {% for cert in certifications %}
+                    <li>{{ cert }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Extra-Curricular Activities</h3>
+                <ul>
+                    {% for ach in achievements %}
+                    <li>{{ ach }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="about-sidebar">
+                <div class="info-box">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><strong>Location:</strong> {{ location }}</li>
+                        <li><strong>Phone:</strong> {{ phone }}</li>
+                        <li><strong>Email:</strong> {{ email }}</li>
+                        <li><strong>GitHub:</strong> <a href="{{ github }}" target="_blank">{{ github }}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>Technical Skills</h3>
+                    {% for category, skills_list in skills.items() %}
+                    <p><strong>{{ category }}:</strong><br>
+                    {{ ', '.join(skills_list) }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
